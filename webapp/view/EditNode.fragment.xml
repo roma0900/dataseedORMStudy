@@ -1,0 +1,34 @@
+<core:FragmentDefinition id="EditNode" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout">
+	
+	<Dialog
+		title="{i18n>Editing}"
+		contentWidth="40%"
+		>
+		<l:VerticalLayout
+		width="100%"
+			class="sapUiContentPadding">
+	<l:content>
+		<l:VerticalLayout width="100%" >
+                	<Toolbar>
+                		
+						<Label text="{i18n>NamePackage}" width="40%"/>
+						<Input id="EditLONG_TEXT" value ="" width="60%" growing="true"  />
+					
+					</Toolbar>
+					</l:VerticalLayout>
+	</l:content>
+	</l:VerticalLayout>
+	<beginButton>
+			<Button
+				text="{i18n>SaveBtn}"
+				press="onEditNode"/>
+		</beginButton>
+	<endButton>
+			<Button
+				text="{i18n>Close}"
+				press="onCloseEditNode"/>
+		</endButton>
+	</Dialog>
+	
+</core:FragmentDefinition>

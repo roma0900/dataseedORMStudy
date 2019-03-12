@@ -1,0 +1,29 @@
+{
+  "dataBinding": {
+    "/webapp/view/ZastavkaPage.view.xml": {
+      "entitySet": ""
+    },
+    "/webapp/view/AuthorizationPage.view.xml": {
+      "entitySet": ""
+    }
+  },
+  "hcpdeploy": {
+    "account": "af0002a80",
+    "name": "dataseedosm",
+    "lastVersionWeTriedToDeploy": "1.0.51"
+  },
+  "generation": [
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Thu, 08 Nov 2018 10:14:39 GMT"
+    }
+  ],
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "",
+    "defaultLanguage": "",
+    "defaultI18NPropertyFile": "",
+    "resourceModelName": ""
+  }
+}

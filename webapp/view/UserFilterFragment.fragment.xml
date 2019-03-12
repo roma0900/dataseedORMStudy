@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="filterFragment">
+    <ViewSettingsDialog confirm="handleConfirmUserFilter" resetFilters="onFilterFragmentReset">
+        <filterItems>
+            <ViewSettingsCustomItem text="Иерархия"
+                                    filterCount="{parts:[{path:'/Sum/vValueLT'}, {path:'/Sum/vValueGT'}], formatter:'.filterCountFormatter'}">
+                <customControl>
+                    <l:VerticalLayout width="100%">
+                    	<Tree
+							id="UserHierarchyTree"
+							items="{path: '/'}"
+							mode="SingleSelect"
+							includeItemInSelection="true">
+							<StandardTreeItem
+									title="{Description}"/>
+						</Tree>
+						<TextArea id="HierarchyFilter" visible="false"/>
+                        <!--<Toolbar>-->
+                        <!--    <Label width="25%" text="Больше чем" class="sapUiSmallMarginBegin"/>-->
+                        <!--    <Input id="vValueGT" width="33%" value="{path: '/Sum/vValueGT'}"/>-->
+                        <!--</Toolbar>-->
+                        <!--<Toolbar>-->
+                        <!--    <Label width="25%" text="Меньше чем" class="sapUiSmallMarginBegin"/>-->
+                        <!--    <Input id="vValueLT" width="33%" value="{path: '/Sum/vValueLT'}"/>-->
+                        <!--</Toolbar>-->
+                    </l:VerticalLayout>
+                </customControl>
+            </ViewSettingsCustomItem>
+            
+            <ViewSettingsCustomItem text="Роли"
+                                    filterCount="{path:'/Sum/vValueLT'}">
+                <customControl>
+                    <l:VerticalLayout width="100%">
+                        <Toolbar>
+                            <Label width="25%" text="Роль:" class="sapUiSmallMarginBegin"/>
+                            <Select
+                            	id="vValueRole"
+								forceSelection="false"
+								selectedKey="visorU">
+								<core:Item key="visorU" text="Супервайзер" />
+								<core:Item key="superU" text="Админ" />
+							</Select>
+                            <!--<Input id="vValueEQ" width="33%" value="{path: '/Sum/vValueEQ'}"/>-->
+                        </Toolbar>
+                    </l:VerticalLayout>
+                </customControl>
+            </ViewSettingsCustomItem>
+            <ViewSettingsCustomItem text="Статус"
+                                    filterCount="{path:'/Sum/vValueLT'}">
+                <customControl>
+                    <l:VerticalLayout width="100%">
+                        <Toolbar>
+                            <Label width="25%" text="Статус:" class="sapUiSmallMarginBegin"/>
+                            <Select
+                            	id="vValueStatus"
+								forceSelection="false"
+								selectedKey="allU">
+								<core:Item key="allU" text="Все" />
+								<core:Item key="ActiveU" text="Активен" />
+								<core:Item key="DeletedU" text="Удален" />
+							</Select>
+                            <!--<Input id="vValueStatus" width="33%" value="{path: '/Sum/vValueStatus'}"/>-->
+                        </Toolbar>
+                    </l:VerticalLayout>
+                </customControl>
+            </ViewSettingsCustomItem>
+        </filterItems>
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

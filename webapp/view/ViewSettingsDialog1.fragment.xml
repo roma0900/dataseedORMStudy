@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+    <ViewSettingsDialog confirm="handleConfirm1">
+        
+
+        
+        <sortItems>
+            
+            <ViewSettingsItem text="Name" key="OBJ_TXT"/>
+            
+            <!--<ViewSettingsItem text="ID" key="PLANT"/>-->
+            
+            <ViewSettingsItem text="Sum" key="SUM"/>
+            
+        </sortItems>
+        
+
+        
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

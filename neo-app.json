@@ -1,0 +1,77 @@
+{
+	"welcomeFile": "/index.html",
+	"logoutPage" : "/logout.html",
+	"routes": [
+		{
+      "path": "/destinations/dataseedORM",
+      "target": {
+        "type": "destination",
+        "name": "dataseedORM"
+      },
+      "description": "dataseedORM OData Service"
+    },
+		{
+			"path": "/services/userapi",
+			"target": {
+				"type": "service",
+				"name": "userapi"
+			}
+		},
+		{
+			"path": "/api/projects",
+			"target": {
+			  "type": "destination",
+			  "name": "restApi"
+			},
+			"description": "Project API"
+	    },
+		{
+			"path": "/resources",
+			"target": {
+				"type": "service",
+				"name": "sapui5",
+				"version": "1.54.8",
+				"preferLocal": true,
+				"entryPath": "/resources"
+			},
+			"description": "SAPUI5 Resources"
+		},
+		{
+			"path": "/test-resources",
+			"target": {
+				"type": "service",
+				"version": "1.54.8",
+				"name": "sapui5",
+				"entryPath": "/test-resources"
+			},
+			"description": "SAPUI5 Test Resources"
+		}
+	],
+	"securityConstraints":[
+		{
+			"permission": "accessForUser",
+			"description": "Access for user",
+			"protectedPaths": [
+				"/webapp/"
+			]
+		}
+	],
+	"authenticationMethod": "none",
+	"sendWelcomeFileRedirect": true,
+	"cacheControl": [
+		{
+			"directive": "private",
+			"maxAge": 0,
+			"path": "/webapp/*html"
+		},
+		{
+			"directive": "private",
+			"maxAge": 0,
+			"path": "sap-ui-cachebuster-info.json"
+		},
+		{
+			"directive": "public",
+			"maxAge": 0
+		}
+	]
+}

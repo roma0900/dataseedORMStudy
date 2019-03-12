@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<ResponsivePopover
+		title="Выбор разрядности"
+		class="sapUiPopupWithPadding"
+		placement="Bottom" >
+		<content>
+			<l:HorizontalLayout>
+				<Select id="selectId" width="auto" maxWidth="100%" selectedKey="rub" icon="" enabled="true" type="Default" textAlign="Initial" valueState="None" forceSelection="false" change="PeriodTypeChanged">
+                   <items>
+                        <core:Item key="rub" text="в руб." enabled="true"/>
+                        <core:Item key="trub" text="в тыс.руб" enabled="true"/>
+                        <core:Item key="mrub" text="в млн.руб" enabled="true"/>
+                    </items>
+                </Select>
+            </l:HorizontalLayout>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

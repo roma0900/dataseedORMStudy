@@ -1,0 +1,48 @@
+<core:FragmentDefinition id="AddShops" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout">
+	
+	<Dialog title="{i18n>AddShop}">
+		<l:VerticalLayout>
+	<l:content>
+		<l:Grid defaultSpan="XL12 L12 M12 S12" hSpacing="2" containerQuery="true">
+		<FlexBox height="100%"
+			width="100%"
+			alignItems="Start"
+			justifyContent="Start">
+			<items>
+			<SearchField placeholder="{i18n>Search}" showSearchButton="true" visible="true" width="160%" liveChange="_onSearchFieldLiveChange"/>
+			</items>
+		</FlexBox>
+		</l:Grid>
+		<t:TreeTable toggleOpenState="toggleOpenState" id="mainPageTable" rowHeight="40" expandFirstLevel="true" enableColumnReordering="false" visibleRowCount="14">
+			<t:columns>
+				<!-- <t:Column> <CheckBox /> </t:Column> -->
+				<t:Column sortProperty="landscapeName" width="400px">
+					<Label text="{i18n>Unallocated}"/>
+					<t:template>
+						<Text text="{LONG_TEXT}" />
+					</t:template>
+				</t:Column>
+				<!--<t:Column>
+					<Label text="Status"/>
+					<t:template>
+						<Text text="{nodeName}"/>
+					</t:template>
+				</t:Column>-->
+			</t:columns>
+		</t:TreeTable>
+	</l:content>
+	</l:VerticalLayout>
+	<beginButton>
+		<Button
+			text="{i18n>Add}"
+			press="onAddShopBtn"/>
+	</beginButton>
+	<endButton>
+			<Button
+				text="{i18n>Close}"
+				press="onCloseAddShops"/>
+		</endButton>
+	</Dialog>
+	
+</core:FragmentDefinition>

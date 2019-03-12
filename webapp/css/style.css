@@ -1,0 +1,91 @@
+html {
+	background-image: url("../images/background.jpg");
+	background-size: cover;
+	background-attachment: fixed;
+}
+.button {
+	 display: inline-block;
+	 padding: 6px 12px;
+	 margin-bottom: 0;
+	 font-size: 16px;
+	 font-weight: bold;
+	 line-height: 1.42857143;
+	 text-align: center;
+	 white-space: nowrap;
+	 vertical-align: middle;
+	 cursor: pointer;
+	 border: 1px solid transparent;
+	 border-radius: 4px;
+	 background-color: #16a1e1;
+	 color: white;			 
+	 margin: 6px;
+	 text-decoration: none;
+}
+		
+.button:HOVER {
+	background-color: #3b5997;
+}
+.sap-tablet .sapMDialog, html.sap-desktop .sapMDialog{
+	max-width: 480px;
+}
+.tileLayout {
+      	border-bottom-color: #fa0a0a; 	
+		border-bottom-style: solid; 	
+		border-bottom-width: 10px; 	
+		border-right-width: 0px;
+		border-left-width: 0px;
+      }
+      .claaName{
+      		width: 100%!important;
+      }
+
+.tileLayout2 {
+	border-bottom-color: #00CF00; 	
+	border-bottom-style: solid; 	
+	border-bottom-width: 10px; 	
+	border-right-width: 0px;
+	border-left-width: 0px;
+}
+
+.tileLayout1 {
+	border-bottom-color: #FFAF25; 	
+	border-bottom-style: solid; 	
+	border-bottom-width: 10px; 	
+	border-right-width: 0px;
+	border-left-width: 0px;
+}
+
+.AppTitle {
+	font-size: 18px;
+}
+
+.Version {
+	font-size: 12px;
+}
+
+.Avatar {
+	padding-right: 16px;
+	padding-top: 5px;
+}
+.UserName {
+	padding-top: 25px;
+}
+
+.columnLabel {
+	font-size:12px !important
+}
+
+.fullHeight {
+	height: 100%;
+}
+/* Pie charts */
+.pieChartTG1{
+	width: 490px!important;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-content: center;
+}
+.sapUiRespGridSpanL6.sapUiRespGridSpanM12.sapUiRespGridSpanS12.sapUiRespGridSpanXL6.sapUiRespGridSpanInvisible{
+	display: none!important;
+}

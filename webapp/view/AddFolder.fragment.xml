@@ -1,0 +1,28 @@
+<core:FragmentDefinition id="AddFolder" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout">
+	
+	<Dialog
+		title="{i18n>AddFolder}">
+		<l:VerticalLayout>
+	<l:content>
+		<l:VerticalLayout width="100%">
+                	<Toolbar>
+						<Label text="{i18n>NamePackage}" width="35%"/>
+						<TextArea id="AddFolderName" placeholder="{i18n>NewPackage}" width="100%" rows="1" />
+					</Toolbar>
+					</l:VerticalLayout>
+	</l:content>
+	</l:VerticalLayout>
+	<beginButton>
+			<Button
+				text="{i18n>Add}"
+				press="onAddingFolder"/>
+		</beginButton>
+	<endButton>
+			<Button
+				text="{i18n>Close}"
+				press="onCloseAddFolder"/>
+		</endButton>
+	</Dialog>
+	
+</core:FragmentDefinition>

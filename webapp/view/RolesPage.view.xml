@@ -1,0 +1,51 @@
+<mvc:View
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	controllerName="com.sap.build.standard.scopeCopy.controller.RolesPage" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:table="sap.ui.table"
+	xmlns:l="sap.ui.layout">
+	<Page title="{i18n>SettingsRoles}"  showHeader="true" showFooter="false" showNavButton="false" enableScrolling="false" navButtonPress="_onPageNavButtonPress">
+		<content>
+			<l:VerticalLayout class="sapUiContentPadding" height="100%">
+				<table:Table 
+					id="RolesDataTable"
+					selectionMode="None"
+					enableColumnReordering="false" 
+					expandFirstLevel="true"
+					visibleRowCount="7"
+					ariaLabelledBy="title"
+	            	noDataText="{i18n>NoData}" 
+	            	height="1000px">
+					<table:toolbar>
+						<Toolbar>
+	                        <Title text="{i18n>RolesList}" titleStyle="H1" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+						</Toolbar>
+					</table:toolbar>
+					<table:columns>
+						<table:Column width="20%" label="{i18n>RoleID}" hAlign="Center" vAlign="Middle">
+	                    	<table:template>
+			                    <Text text="{ID}" wrapping="false"/>
+			                </table:template>
+	                    </table:Column>
+	                    <table:Column width="auto" label="{i18n>RoleName}" hAlign="Center" vAlign="Middle">
+	                    	<table:template>
+			                    <Text text="{Description}" wrapping="false"/>
+			                </table:template>
+	                    </table:Column>
+	                    <table:Column width="auto" label="{i18n>HierLevel}" hAlign="Center" vAlign="Middle">
+	                    	<table:template>
+			                    <Text text="{LevelName}" wrapping="false"/>
+			                </table:template>
+	                    </table:Column>
+	                    <table:Column width="auto" label="{i18n>AccessLevel}" hAlign="Center" vAlign="Middle">
+	                    	<table:template>
+			                    <Text text="{AccessLevel}" wrapping="false"/>
+			                </table:template>
+	                    </table:Column>
+					</table:columns>
+				</table:Table>
+			</l:VerticalLayout>
+		</content>
+	</Page>
+</mvc:View>
