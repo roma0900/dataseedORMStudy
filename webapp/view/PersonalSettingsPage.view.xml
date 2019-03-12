@@ -1,0 +1,67 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.sap.build.standard.scopeCopy.controller.PersonalSettingsPage" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page>
+				<subHeader>
+					<Toolbar>
+						<ToolbarSpacer/>
+							<SegmentedButton selectedKey="general" selectionChange="onSelectionChange">
+								<items>
+									<SegmentedButtonItem key="general" text="Общие настройки" width="auto" enabled="true"/>
+									<SegmentedButtonItem key="KPI" text="Настройки KPI" width="auto" enabled="true"/>
+								</items>
+							</SegmentedButton>
+						<ToolbarSpacer/>
+					</Toolbar>
+				</subHeader>
+				
+				<content>
+				<NavContainer id="PSNavCon">
+					<Page id="general" showHeader="false">
+					</Page>
+					
+					<Page id="KPI" showHeader="false">
+						<VBox class="sapUiSmallMargin">
+							<Select items="{path: 'plants>/USERS'}" width="30%" change="comboBoxChanged">
+								<core:Item key="{plants>ID}" text="{
+									parts: [
+										{path: 'plants>SURNAME'},
+										{path: 'plants>NAME'},
+										{path: 'plants>PATRONYMIC'}
+									],
+									formatter : '.userNameFormatter'
+								}" />
+							</Select>
+							<Label text="Зеленый статус:"/>
+							<Input
+								id="inputGreen"
+								type="Number"
+								class="sapUiSmallMarginBottom"
+								placeholder="Выполнение плана в %" 
+								width="20%"/>
+							<Label text="Желтый статус:"/>
+							<Input
+								id="inputYellow"
+								type="Number"
+								class="sapUiSmallMarginBottom"
+								placeholder="Выполнение плана в %"
+								width="20%"
+								liveChange="inputYellowLiveChange"/>
+							<Label text="Красный статус:"/>
+							<Input
+								id="inputRed"
+								enabled="false"
+								class="sapUiSmallMarginBottom"
+								value="Выполнение плана в %"
+								width="20%"/>
+							<Button text="Сохранить изменения" press="onSaveChanges"/>
+							<Button text="Вернуть стандартные значения" press="onSetDefault"/>
+						</VBox>
+					</Page>
+				</NavContainer>	
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

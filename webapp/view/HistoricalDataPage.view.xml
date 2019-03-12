@@ -1,0 +1,111 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.sap.build.standard.scopeCopy.controller.HistoricalDataPage"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:table="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
+	<Page showHeader="true" showFooter="false" showNavButton="false" enableScrolling="true" navButtonPress="_onPageNavButtonPress">
+		<subHeader>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<SegmentedButton selectedKey="Settings" selectionChange="onSelectionChange">
+					<items>
+						<SegmentedButtonItem key="HistData" icon="sap-icon://history" text="{i18n>Historical}" width="auto" enabled="true"/>
+					</items>
+				</SegmentedButton>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<form:SimpleForm id="histForm" editable="true">
+				<form:content>
+					<FormattedText htmlText="&lt;span style=font-size:24px>{i18n>UploadHistFile}&lt;/span>"  visible="true" />
+					<Label text="{i18n>FileName}"></Label>
+					<VBox>
+						<u:FileUploader id="idfileUploader" width="50%"
+						sameFilenameAllowed="false" placeholder="{i18n>Choose}"
+						style="Emphasized" fileType="csv,xlsx" change="onChangeFUP"
+						uploadStart=""
+						uploadProgress=""
+						uploadComplete="onUploadComplete"
+						uploadAborted="">
+						</u:FileUploader>
+						<l:HorizontalLayout class="">
+							<Button text="{i18n>Upload2}" press="onUpload"></Button>
+							<Button text="{i18n>Clear}" press="onClear" class="sapUiSmallMarginBegin"></Button>
+						</l:HorizontalLayout>
+					</VBox>
+				</form:content>
+			</form:SimpleForm>
+			<l:VerticalLayout width="100%" class="">
+				<l:Grid defaultSpan="XL12 L12 M12 S12" hSpacing="2" containerQuery="true">
+					<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="Center">
+						<items>
+							<table:Table
+							id="HistTable"
+							enableColumnReordering="false"
+							visibleRowCount="20"
+							title="{i18n>PreLook}"
+							selectionMode="None"
+							visible="false">
+								<table:columns>
+					            <!--<table:Column width="" label="{i18n>Description}">-->
+					            <!--    <table:template>-->
+					            <!--        <Text text="{Description}" wrapping="false" sortProperty="Description"/>-->
+					            <!--    </table:template>-->
+					            <!--</table:Column>-->
+						            <table:Column width="" label="{i18n>PLANT}" sortProperty="PLANT">
+						                <table:template>
+						                    <Text text="{STORE_ID}" wrapping="false" />
+						                </table:template>
+						            </table:Column>
+						            <!-- <table:Column width="" label="{i18n>ADDRESS}" id="AddressColumn">-->
+						            <!--    <table:template>-->
+						            <!--        <Text text="{STORE__ADDRESS}" wrapping="false" />-->
+						            <!--    </table:template>-->
+						            <!--</table:Column>-->
+						            <table:Column width="" label="Дата">
+						            	<table:template>
+						            		<Text text="{IP_DATE}" wrapping="false"/>
+						            	</table:template>
+						            </table:Column>
+						            <table:Column width="" label="{i18n>KPIRTO}">
+						            	<table:template>
+						            		<Text text="{RTO_AMOUNT}" wrapping="false"/>
+						            	</table:template>
+						            </table:Column>
+						            <table:Column width="" label="{i18n>KPIRemains}">
+						            	<table:template>
+						            		<Text text="{STOCK_AMOUNT}" wrapping="false"/>
+						            	</table:template>
+						            </table:Column>
+						            <table:Column width="" label="{i18n>KPIWrite-offs}">
+						            	<table:template>
+						            		<Text text="{MOVE_AMOUNT}" wrapping="false"/>
+						            	</table:template>
+						            </table:Column>
+						            <table:Column width="" label="{i18n>KPIPlan}">
+						            	<table:template>
+						            		<Text text="{KPI_PLAN_COMPL}" wrapping="false"/>
+						            	</table:template>
+						            </table:Column>
+						            <table:Column width="" label="{i18n>KPIAverageCheck}">
+						            	<table:template>
+						            		<Text text="{KPI_PLAN_AVG}" wrapping="false"/>
+						            	</table:template>
+						            </table:Column>
+						            <table:Column width="" label="{i18n>KPITraffic}">
+						            	<table:template>
+						            		<Text text="{KPI_TRAFFIC}" wrapping="false"/>
+						            	</table:template>
+						            </table:Column>
+						    	</table:columns>
+							</table:Table>							
+						</items>
+					</FlexBox>
+				</l:Grid>
+			</l:VerticalLayout>
+		</content>
+	</Page>
+</mvc:View>

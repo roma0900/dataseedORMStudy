@@ -1,0 +1,23 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.sap.build.standard.scopeCopy.controller.PrognosisPage"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified">
+	<Page>
+		<content>
+			<form:SimpleForm id="progForm" editable="true">
+		<form:content>
+			<FormattedText htmlText="&lt;span style=font-size:24px>{i18n>UploadProgFile}&lt;/span>"  visible="true" />
+			<Label text="{i18n>FileName}"></Label>
+			<VBox>
+				<u:FileUploader id="idfileUploader" width="50%"
+				sameFilenameAllowed="false" placeholder="{i18n>Choose}"
+				style="Emphasized" fileType="csv,xlsx" change="onChangeFUP">
+				</u:FileUploader>
+				<Button text="{i18n>Upload2}" id="stStep" press="onUpload"></Button>
+			</VBox>
+		</form:content>
+	</form:SimpleForm>
+		</content>
+	</Page>
+</mvc:View>

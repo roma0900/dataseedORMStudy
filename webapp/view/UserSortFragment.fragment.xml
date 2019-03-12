@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+    <ViewSettingsDialog confirm="handleConfirmUserSort">
+        
+
+        
+        <sortItems>
+            
+            <ViewSettingsItem text="Имя" key="NAME"/>
+            
+            <ViewSettingsItem text="ID" key="ID"/>
+            
+            <ViewSettingsItem text="Иерархия" key="ACCESS"/>
+            
+        </sortItems>
+        
+
+        
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

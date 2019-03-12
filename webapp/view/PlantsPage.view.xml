@@ -1,0 +1,207 @@
+<mvc:View xmlns:table="sap.ui.table" xmlns:dnd="sap.ui.core.dnd"
+xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.scopeCopy.controller.PlantsPage" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.commons.layout" xmlns:l="sap.ui.layout"
+xmlns:u="sap.ui.unified">
+    <Page showHeader="true" title="{i18n>SummaryInfo}" showFooter="false" showNavButton="true" enableScrolling="true" navButtonPress="_onPageNavButtonPress">
+	 <content>
+	 	<l:VerticalLayout width="100%" class="">
+			<l:Grid defaultSpan="XL6 L6 M12 S12" containerQuery="true">
+				<FlexBox height="100%"
+					width="100%"
+					alignItems="Start"
+					justifyContent="Start">
+						<items>
+							<l:HorizontalLayout>
+								<l:HorizontalLayout class="Avatar">
+									<f:Avatar src="" initials="" displayShape="Circle" displaySize="M" imageFitType="Cover" />
+								</l:HorizontalLayout>
+								<l:HorizontalLayout class="UserName">
+	                        		<FormattedText top="50" htmlText="&lt;span style='font-size: 16px;'>{userData>/displayName}&lt;/span>" visible="true"/>
+	                        	</l:HorizontalLayout>
+							</l:HorizontalLayout>
+						</items>
+				</FlexBox>
+			</l:Grid>
+		</l:VerticalLayout>
+		<l:VerticalLayout width="100%" class="">
+			<l:Grid defaultSpan="XL6 L6 M12 S12" hSpacing="2" containerQuery="true">
+				<FlexBox height="100%"
+					width="100%"
+					alignItems="Start"
+					justifyContent="Start">
+					<SearchField placeholder="{i18n>Search}" showSearchButton="true" visible="true" width="200%" liveChange="_onSearchFieldLiveChange"/>
+				</FlexBox>
+				<FlexBox height="100%"
+					width="100%"
+					alignItems="End"
+					justifyContent="End">
+						<items>
+							<l:HorizontalLayout>
+								<Select id="selectId" width="auto" maxWidth="100%" selectedKey="day" icon="" enabled="true" type="Default" textAlign="Initial" valueState="None" forceSelection="false" change="PeriodTypeChanged">
+	                                <items>
+	                                    <core:Item key="day" text="{i18n>Day}" enabled="true"/>
+	                                    <core:Item key="Week" text="{i18n>Week}" enabled="true"/>
+	                                    <core:Item key="Month" text="{i18n>Month}" enabled="true"/>
+	                                    <core:Item key="Quarter" text="{i18n>Quarter}" enabled="true"/>
+	                                    <core:Item key="Year" text="{i18n>Year}" enabled="true"/>
+	                                </items>
+	                            </Select>
+	                            <Button icon="sap-icon://slim-arrow-left" press="onLeftPress"/>
+	                            <DatePicker id="DP1" width="125px" displayFormat="short" change="handleChange"/>
+	                            <DatePicker id="DP2" width="125px" displayFormat="short" change="handleChange2"/>
+	                            <Button icon="sap-icon://slim-arrow-right" press="onRightPress"/>
+	                        </l:HorizontalLayout>
+	                    </items>
+	            </FlexBox>
+			</l:Grid>
+		</l:VerticalLayout>
+		<l:VerticalLayout width="100%" class="">
+			<l:Grid defaultSpan="XL12 L12 M12 S12" hSpacing="2" containerQuery="true">
+				<table:TreeTable
+				        id="treeTable"
+				        selectionMode="None"
+				        enableColumnReordering="false"
+				        expandFirstLevel="true"
+				        rowActionCount="1"
+				        visibleRowCount="15"
+				        title="{i18n>Shops}"
+				        >
+				        <table:columns>
+				            <table:Column width="30%" label="{i18n>Description}">
+				                <table:template>
+				                    <Text text="{NODE_TEXT}" wrapping="false" sortProperty="Description"/>
+
+				                </table:template>
+				            </table:Column>
+				             <table:Column width="25%" label="{i18n>ADDRESS}" id="AddressColumn">
+				                <table:template>
+				                    <Text text="{STORE__ADDRESS}" wrapping="false" />
+				                </table:template>
+				            </table:Column>
+				            <table:Column width="auto" sortProperty="RTO_ICON">
+				                <table:template>
+					                	<core:Icon src="sap-icon://circle-task-2" size="24px" height="24px" width="24px"
+					                		visible="{
+												parts: [
+													{path: 'Description'}
+												],
+												formatter: '.iconState'
+											}"
+			    							color="{
+												parts: [
+													{path: 'RTO_ICON'}
+												],
+												formatter: '.rtoState'
+											}"
+										/>
+				                </table:template>
+				            </table:Column>
+				            <table:Column id="RTOcolumn" width="12%" label="{i18n>KPIRTO}" sortProperty="RTO_AMOUNT_2">
+				                <table:template>
+					                    <Text text="{path: 'RTO_AMOUNT_1', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" />
+
+				                </table:template>
+				                <table:menu>
+									<u:Menu ariaLabelledBy="RTOcolumn">
+										<u:items>
+											<u:MenuItem
+												text="Выбрать разрядность"
+												select="onChangeCapacitySelect"/>
+											<u:MenuItem
+												text="Сортировать по восходящей"
+												icon="sap-icon://sort-ascending"
+												select="onSort"/>
+											<u:MenuItem
+												text="Сортировать по нисходящей"
+												icon="sap-icon://sort-descending"
+												select="onSort"/>
+										</u:items>
+									</u:Menu>
+								</table:menu>
+				            </table:Column>
+				             <table:Column width="auto" sortProperty="STOCK_ICON">
+				                <table:template>
+					                	<core:Icon src="sap-icon://circle-task-2" size="24px" height="24px" width="24px" visible="{
+											parts: [
+												{path: 'Description'}
+											],
+											formatter: '.iconState'
+											}"
+			    							color="{
+												parts: [
+													{path: 'STOCK_ICON'}
+												],
+												formatter: '.rtoState'
+											}"
+										/>
+				                </table:template>
+				           </table:Column>
+				            <table:Column id="REMAINScolumn" width="15%" label="{i18n>KPIRemains}" sortProperty="STOCK_AMOUNT_2">
+				                <table:template>
+					                    <Text text="{path: 'STOCK_AMOUNT_1', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" />
+
+				                </table:template>
+				           </table:Column>
+				           <table:Column width="auto" sortProperty="MOVE_ICON">
+				                <table:template>
+					                	<core:Icon src="sap-icon://circle-task-2" size="24px" height="24px" width="24px" visible="{
+											parts: [
+												{path: 'Description'}
+											],
+											formatter: '.iconState'
+										}"
+		    							color="{
+											parts: [
+												{path: 'MOVE_ICON'}
+											],
+											formatter: '.rtoState'
+										}"
+										/>
+				                </table:template>
+				            </table:Column>
+				            <table:Column id="SPISANIYAcolumn" width="12%" label="{i18n>KPIWrite-offs}" sortProperty="MOVE_AMOUNT_2">
+				                <table:template>
+					                    <Text text="{path: 'MOVE_AMOUNT_1', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 0}}" wrapping="false" />
+
+				                </table:template>
+				            </table:Column>
+				        </table:columns>
+				        <table:rowActionTemplate>
+				        	<table:RowAction>
+				            	<table:items>
+				        			<table:RowActionItem id="idRowAction" type="custom" icon="sap-icon://feeder-arrow"  press="_onTableItemPress" visible="{
+											parts: [
+												{path: 'Description'}
+											],
+											formatter: '.iconState'
+										}" ></table:RowActionItem>
+						        </table:items>
+						    </table:RowAction>
+				        </table:rowActionTemplate>
+				    </table:TreeTable>
+		    </l:Grid>
+		</l:VerticalLayout>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
+                <content>
+                    <ToolbarSpacer width=""/>
+                    <Button text="{i18n>SaveBtn}" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                    <Button text="{i18n>CancelBtn}" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent>
+            <!--<Button-->
+            <!--    icon="sap-icon://action-settings"-->
+            <!--    press="_onPageSettingsButtonPress" />-->
+			</headerContent>
+		<!-- <subHeader>-->
+		<!--	<Bar>-->
+		<!--		<contentLeft>-->
+		<!--			<Button icon="sap-icon://menu2" press="_onSideNavButtonPress"></Button>-->
+		<!--		</contentLeft>-->
+		<!--	 </Bar>-->
+		<!--</subHeader>-->
+        <customHeader/>
+    </Page>
+</mvc:View>

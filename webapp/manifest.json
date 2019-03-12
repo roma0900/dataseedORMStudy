@@ -1,0 +1,224 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"_version": "1.3.0",
+		"id": "com.sap.build.standard.scopeCopy",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.2.2"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"ach": "ach",
+		"resources": "resources.json",
+		"dataSources": {
+			"mainService": {
+				"uri": "/destinations/dataseedORM/XSPROJECT/OData1.xsodata",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"thirdService": {
+				"uri": "/destinations/dataseedORM/XSPROJECT/OData3.xsodata",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.32.0"
+		}
+	},
+	"sap.ui": {
+		"_version": "1.3.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"_version": "1.3.0",
+		"rootView": {
+			"viewName": "generated.app.view.PageSideNav",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.50.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"": {
+				"dataSource": "mainService",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"useBatch": true,
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Inline",
+					"refreshAfterChange": false,
+					"withCredentials": true,
+					"skipMetadataAnnotationParsing": false,
+					"user": "RBULYCHEV",
+					"password": "Roma0900!@#"
+				}
+			},
+			"third": {
+				"dataSource": "thirdService",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"useBatch": true,
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Inline",
+					"refreshAfterChange": false,
+					"withCredentials": true,
+					"skipMetadataAnnotationParsing": false,
+					"user": "RBULYCHEV",
+					"password": "Roma0900!@#"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.sap.build.standard.scopeCopy.view",
+				"controlId": "App",
+				"clearTarget": false,
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": [
+						"PageSideNav"
+					]
+				}
+			},
+			"targets": {
+				"PlantsPage": {
+					"controlAggregation": "pages",
+					"viewName": "PlantsPage",
+					"viewId": "PlantsPage",
+					"viewLevel": 3,
+					"transition": "slide"
+				},
+				"PageSideNav": {
+					"controlAggregation": "pages",
+					"viewName": "PageSideNav",
+					"viewId": "PageSideNav",
+					"viewLevel": 3,
+					"transition": "slide"
+				},
+				"KPIPage": {
+					"controlAggregation": "pages",
+					"viewName": "KPIPage",
+					"viewId": "KPIPage",
+					"viewLevel": 4,
+					"transition": "slide"
+				},
+				"TGDetailPage": {
+					"controlAggregation": "pages",
+					"viewName": "TGDetailPage",
+					"viewId": "TGDetailPage",
+					"viewLevel": 5,
+					"transition": "slide"
+				},
+				"ParamsPage": {
+					"controlAggregation": "pages",
+					"viewName": "ParamsPage",
+					"viewId": "ParamsPage",
+					"viewLevel": 6,
+					"transition": "slide"
+				},
+				"Dictionary": {
+					"controlAggregation": "pages",
+					"viewName": "Dictionary",
+					"viewId": "Dictionary",
+					"viewLevel": 7,
+					"transition": "slide"
+				}
+			},
+			"routes": [
+				{
+					"pattern": "PlantsPage/:context:",
+					"name": "PlantsPage",
+					"target": [
+						"PlantsPage"
+					]
+				},
+				{
+					"pattern": "PageSideNav/:context:",
+					"name": "PageSideNav",
+					"target": [
+						"PageSideNav"
+					]
+				},
+				{
+					"pattern": "KPIPage/:context:",
+					"name": "KPIPage",
+					"target": [
+						"KPIPage"
+					]
+				},
+				{
+					"pattern": "TGDetailPage/:context:",
+					"name": "TGDetailPage",
+					"target": [
+						"TGDetailPage"
+					]
+				},
+				{
+					"pattern": "ParamsPage/:context:",
+					"name": "ParamsPage",
+					"target": [
+						"ParamsPage"
+					]
+				},
+				{
+					"name": "Dictionary",
+					"pattern": "Dictionary/:context:",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Dictionary"
+					]
+				}
+			]
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

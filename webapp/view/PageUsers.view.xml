@@ -1,0 +1,123 @@
+<mvc:View 
+	xmlns:mvc="sap.ui.core.mvc" 
+	controllerName="com.sap.build.standard.scopeCopy.controller.PageUsers" 
+	xmlns:m="sap.m" 
+	xmlns:l="sap.ui.layout"
+	xmlns:layout="sap.ui.commons.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core"
+	xmlns:table="sap.ui.table"
+	xmlns:dnd="sap.ui.core.dnd">
+	<m:Page showHeader="true" title="{i18n>SettingsUser}" showFooter="false" showNavButton="false" enableScrolling="false" navButtonPress="_onPageNavButtonPress">
+        <m:content>
+		<l:VerticalLayout class="sapUiContentPadding" id="usersLayout" height="100%">
+        	<table:Table 
+				id="userDataTable"
+				mode= "SingleSelect"
+				rows="{plants>/VIEW_USERS}"
+				visibleRowCount="15"
+				sort="sortDeliveryDate"
+				ariaLabelledBy="title"
+            	noDataText="{i18n>NoData}" 
+            	height="1000px"
+            	>
+        		<table:toolbar>
+					<m:Toolbar>
+                        <m:Title text="{i18n>UsersList}" titleStyle="H1" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+                        <m:ToolbarSpacer width=""/>
+                        <!--<m:OverflowToolbarButton text="{i18n>Sort}" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onSort"/>-->
+                        <m:OverflowToolbarButton text="{i18n>Filter}" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onFilter"/><!--
+                        <m:OverflowToolbarButton text="{i18n>Group}" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+                        <m:OverflowToolbarButton text="{i18n>Add}" type="Transparent" icon="sap-icon://positive" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onAdd"/><!--
+                        <m:OverflowToolbarButton text="{i18n>Add}" type="Transparent" icon="sap-icon://edit" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onEdit"/>-->
+                        <m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onDelete"/>
+					</m:Toolbar>
+				</table:toolbar>
+                <table:columns>
+                    <table:Column width="10%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false" label="{i18n>UserID}" sortProperty="ID">
+                    	<m:Label text="{i18n>UserID}"/>
+						<table:template>
+                            <m:Text text="{plants>ID}" titleActive="false" visible="true" width="auto"/> 
+						</table:template>
+                    </table:Column>
+                    <table:Column id="nspValue" width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false" label="{i18n>fio}" sortProperty="SURNAME">
+                    	<m:Label text="{i18n>fio}"/>
+						<table:template>
+                            <m:Text text="{
+									parts: [
+										{path: 'plants>SURNAME'},
+										{path: 'plants>NAME'},
+										{path: 'plants>PATRONYMIC'}
+									],
+									formatter : '.userNameFormatter'
+								}" titleActive="false" visible="true"/>
+						</table:template>
+                    </table:Column>
+                    <table:Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false" label="{i18n>Role}" sortProperty="ROLE">
+                    	<m:Label text="{i18n>Role}"/>
+						<table:template>
+                            <m:ObjectIdentifier text="{plants>ROLE}" titleActive="false" visible="true"/>  
+						</table:template>
+                    </table:Column>
+                    <table:Column width="auto" hAlign="Left" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false" label="{i18n>HierLevel}" sortProperty="ACCESS">
+                    	<m:Label text="{i18n>HierLevel}"/>
+						<table:template>
+                            <m:Text text="{plants>SHORT_TEXT}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</table:template>
+                    </table:Column>
+                    <table:Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false" label="{i18n>StartDate}" sortProperty="DATESTART">
+                    	<m:Label text="{i18n>StartDate}"/>
+						<table:template>
+                            <m:Text text="{plants>DATESTART}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</table:template>
+                    </table:Column>
+                    <table:Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false" label="{i18n>EndDate}" sortProperty="DATEEND">
+                    	<m:Label text="{i18n>EndDate}"/>
+						<table:template>
+                            <m:Text text="{plants>DATEEND}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</table:template>
+                    </table:Column>
+                    <table:Column width="10%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false" label="{i18n>Delete}">
+                    	<m:Label text="Статус"/>
+						<table:template>
+                            <m:Text text="{plants>STATUS}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						</table:template>
+                    </table:Column>
+                    <table:Column width="10%" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false" label="{i18n>Edit}">
+                    	<m:Label text="{i18n>Edit}"/>
+                        <table:template>
+                            <core:Icon press="_onEditePress" src="sap-icon://edit" size="24px" height="24px" width="24px" visible="true"/>
+                    	</table:template>
+                    </table:Column>
+                </table:columns>
+            </table:Table>
+        </l:VerticalLayout>
+  <!--      <m:Tree-->
+		<!--	id="UserHierarchyTree"-->
+		<!-- 	items="{path: '/'}"-->
+		<!-- 	mode="MultiSelect"-->
+		<!--	includeItemInSelection="true">-->
+		<!--	<m:headerToolbar>-->
+  <!--              <m:Toolbar>-->
+  <!--                  <m:content>-->
+  <!--                      <m:Title text="Nodes" level="H2" />-->
+  <!--                      <m:ToolbarSpacer />-->
+  <!--                  </m:content>-->
+  <!--              </m:Toolbar>-->
+  <!--          </m:headerToolbar>-->
+		<!--    <m:StandardTreeItem-->
+		<!--	    title="{Description}"/>-->
+		<!--</m:Tree>-->
+         </m:content>
+        <m:footer>
+            <m:OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
+                <m:content>
+                    <m:ToolbarSpacer width=""/>
+                    <m:Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                    <m:Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                </m:content>
+            </m:OverflowToolbar>
+        </m:footer>
+    </m:Page>
+</mvc:View>

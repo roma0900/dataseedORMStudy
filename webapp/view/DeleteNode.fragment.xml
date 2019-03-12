@@ -1,0 +1,34 @@
+<core:FragmentDefinition id="DeleteNode" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout">
+	
+	<Dialog
+		id="deleteNodeDialog"
+		title="{i18n>DeleteNode}?"
+		initialFocus="closeBtn">
+		<l:VerticalLayout>
+	<l:content>
+		<l:VerticalLayout width="100%">
+                	<Toolbar>
+						<Label id="DescriptionNode" text=" " width="100%"/>
+						<!--<TextArea id="AddFolderName" placeholder="Новая папка" width="100%" rows="1" />-->
+					</Toolbar>
+					</l:VerticalLayout>
+		
+		
+	</l:content>
+	</l:VerticalLayout>
+	<beginButton>
+			<Button
+				text="{i18n>Delete}"
+				press="onMenuDeletepress"/>
+		</beginButton>
+	<endButton>
+			<Button
+				id="closeBtn"
+				
+				text="{i18n>Close}"
+				press="onCloseDeleteNode"/>
+		</endButton>
+	</Dialog>
+	
+</core:FragmentDefinition>

@@ -1,0 +1,77 @@
+<mvc:View xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.scopeCopy.controller.AuthorizationPage" xmlns="sap.m" xmlns:layout="sap.ui.layout">
+    <Page showHeader="false" title="Page Title" showFooter="false" showNavButton="false" enableScrolling="false">
+        <content>
+
+			<FlexBox
+				height="100%"
+				width="100%"
+				alignItems="Center"
+				justifyContent="Center"
+				alignContent="Center">
+					<items>
+						<layout:VerticalLayout class="sapUiContentPadding"  >
+							<FlexBox
+								height="100%"
+								width="100%"
+								alignItems="Center"
+								justifyContent="Center"
+								alignContent="Center">
+								<items>
+                            	<FormattedText htmlText="&lt;span style=font-size:46px>DataseedORM&lt;/span>"  visible="true" />
+                            	</items>
+                            </FlexBox>
+							<FlexBox
+								height="100%"
+								width="100%"
+								alignItems="Center"
+								justifyContent="Center"
+								alignContent="Center">
+									<items>
+										<Button text="{i18n>EnterBtn}" type="Emphasized" width="auto" iconFirst="true" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
+									</items>
+							</FlexBox>
+						</layout:VerticalLayout>
+					</items>
+				</FlexBox>
+
+        </content>
+        <!--<footer>-->
+        <!--    <OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">-->
+        <!--        <content>-->
+        <!--            <ToolbarSpacer width=""/>-->
+        <!--            <Button text="{i18n>SaveBtn}" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+        <!--            <Button text="{i18n>CancelBtn}" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+        <!--        </content>-->
+        <!--    </OverflowToolbar>-->
+        <!--</footer>-->
+        <!--<headerContent/>-->
+        <!--<subHeader/>-->
+        <!--<customHeader/>-->
+    </Page>
+</mvc:View>
+<!--            <layout:AbsoluteLayout horizontalScrolling="false" verticalScrolling="Auto">-->
+<!--                <layout:positions>-->
+<!--                    <layout:PositionContainer top="228px">-->
+<!--                        <layout:control>-->
+<!--                            <FormattedText htmlText="&lt;span style=font-size:46px>{i18n>Autorization}&lt;/span>" height="66px" visible="true" class="col-xs-push-3 col-xs-6 col-sm-push-4 col-sm-5 col-md-push-4 col-md-5 col-lg-push-4 col-lg-4"/>-->
+<!--                        </layout:control>-->
+<!--                    </layout:PositionContainer>-->
+<!--                    <layout:PositionContainer top="323px">-->
+<!--                        <layout:control>-->
+<!--                            <TextArea rows="1" placeholder="{i18n>Login}" cols="70" maxLength="0" wrapping="None" enabled="true" visible="true" class="col-xs-push-3 col-xs-6 col-sm-push-4 col-sm-5 col-md-push-4 col-md-4 col-lg-push-4 col-lg-4"/>-->
+<!--                        </layout:control>-->
+<!--                    </layout:PositionContainer>-->
+<!--                    <layout:PositionContainer top="383px">-->
+<!--                        <layout:control>-->
+<!--                            <TextArea rows="1" placeholder="{i18n>Password}" cols="70" maxLength="0" wrapping="None" enabled="true" visible="true" class="col-xs-push-3 col-xs-6 col-sm-push-4 col-sm-5 col-md-push-4 col-md-4 col-lg-push-4 col-lg-4"/>-->
+<!--                        </layout:control>-->
+<!--                    </layout:PositionContainer>-->
+<!--                    <layout:PositionContainer top="446px">-->
+<!--                        <layout:control>-->
+<!--                            <Button text="{i18n>EnterBtn}" type="Emphasized" iconFirst="true" width="" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress" class="col-xs-push-3 col-xs-6 col-sm-push-4 col-sm-5 col-md-push-4 col-md-4 col-lg-push-4 col-lg-4"/>-->
+<!--                        </layout:control>-->
+<!--                    </layout:PositionContainer>-->
+<!--                </layout:positions>-->
+<!--            </layout:AbsoluteLayout>-->
+<!--    </Page>-->
+<!--</mvc:View>-->

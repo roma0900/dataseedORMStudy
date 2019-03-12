@@ -1,0 +1,126 @@
+<mvc:View viewName="com.sap.build.standard.scopeCopy.view.Dictionary" xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.scopeCopy.controller.Dictionary" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:layout="sap.ui.commons.layout" xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core" xmlns:table="sap.ui.table" xmlns:dnd="sap.ui.core.dnd">
+	<Page showHeader="true" showFooter="false" showNavButton="false" enableScrolling="false" navButtonPress="onPageNavButtonPress">
+		<subHeader>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<SegmentedButton selectedKey="ShopsSettings" selectionChange="onSelectionChange">
+					<items>
+						<SegmentedButtonItem key="shopDictionary" icon="sap-icon://retail-store" text="Магазины" width="auto" enabled="true"/>
+						<SegmentedButtonItem key="productDicrionary" icon="sap-icon://product" text="Товары" width="auto" enabled="true"/>
+						<SegmentedButtonItem key="group1" icon="sap-icon://group-2" text="Товарная группа 1 уровня" width="auto" enabled="true"/>
+						<SegmentedButtonItem key="group2" icon="sap-icon://group-2" text="Товарная группа 2 уровня" width="auto" enabled="true"/>
+						<SegmentedButtonItem key="group3" icon="sap-icon://group-2" text="Товарная группа 3 уровня" width="auto" enabled="true"/>
+						<SegmentedButtonItem key="group4" icon="sap-icon://group-2" text="Товарная группа 4 уровня" width="auto" enabled="true"/>
+						<SegmentedButtonItem key="hierarchy" icon="sap-icon://drill-down" text="Иерархия магазинов" width="auto" enabled="true"/>
+					</items>
+				</SegmentedButton>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</subHeader>
+		<content>
+			<l:VerticalLayout class="sapUiContentPadding" id="usersLayout" height="100%">
+				<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="Start">
+					<items>
+						<table:Table id="dictionaryTableData" mode="SingleSelect" sort="sortDeliveryDate" ariaLabelledBy="title" noDataText="{i18n>NoData}"
+							height="auto">
+							<table:toolbar>
+								<Toolbar id="buttonToolbar">
+									<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="Start">
+										<SearchField placeholder="{i18n>Search}" showSearchButton="true" visible="true" width="200%" liveChange="onSearchFieldLiveChange"/>
+									</FlexBox>
+									<ToolbarSpacer width=""/>
+									<OverflowToolbarButton text="{i18n>Sort}" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true"
+										visible="true" iconDensityAware="false" press="onSort"/>
+									<OverflowToolbarButton text="{i18n>Filter}" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true"
+										visible="true" iconDensityAware="false" press="onFilter"/>
+									<u:FileUploader uploadUrl="" buttonText="" fileType="csv,xlsx" maximumFileSize="1" buttonOnly="true" icon="sap-icon://upload"
+										iconFirst="true" change="onLoad" iconDensityAware="false" uploadComplete="onShopUploadCompleteFUP"
+										typeMissmatch="onShopFailedFUP" fileSizeExceed="onShopFailedFUP" uploadAborted="onShopFailedFUP" filenameLengthExceed="onShopFailedFUP"></u:FileUploader>
+									<!--<OverflowToolbarButton text="{i18n>Upload2}" type="Transparent" icon="sap-icon://upload" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onLoad"/>-->
+									<!--<OverflowToolbarButton text="{i18n>Add}" type="Transparent" icon="sap-icon://positive" iconFirst="true" width="auto" enabled="true"-->
+									<!--	 iconDensityAware="false" press="onAdd"/>-->
+									<!--<OverflowToolbarButton type="Transparent" icon="sap-icon://decline" iconFirst="true" width="auto" enabled="true" -->
+									<!--	iconDensityAware="false" press="onDelete"/>-->
+								</Toolbar>
+							</table:toolbar>
+						</table:Table>
+						<table:TreeTable id="treeTableHier" enableColumnReordering="false" rowActionCount="2" visibleRowCount="8" title="{i18n>ShopsHier}"
+							selectionMode="None" enableSelectAll="false" navigationMode="Paginator" cellClick="onCellClick" visible="false">
+							<table:toolbar>
+								<Toolbar>
+									<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="Start">
+										<items>
+											<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="Start">
+												<items>
+													<SearchField placeholder="{i18n>Search}" showSearchButton="true" visible="true" width="200%" liveChange="_onSearchFieldLiveChange"/>
+												</items>
+											</FlexBox>
+											<ToolbarSpacer width=""/>
+											<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="End">
+												<items>
+													<OverflowToolbarButton text="{i18n>Sort}" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true"
+														visible="true" iconDensityAware="false" press="_onSort"/>
+													<OverflowToolbarButton text="{i18n>Filter}" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true"
+														visible="true" iconDensityAware="false" press="_onFilter"/>
+													<u:FileUploader id="idfileUploader" width="100%" sameFilenameAllowed="false" icon="sap-icon://upload" iconFirst="true"
+														buttonText="{i18n>UploadHier}" fileType="csv,xsls" change="onChangeFUP" buttonOnly="true" visible="true" iconDensityAware="false"></u:FileUploader>
+													<u:FileUploader id="idfileUploader2" width="100%" sameFilenameAllowed="false" icon="sap-icon://upload" iconFirst="true"
+														buttonText="{i18n>UploadText}" fileType="csv" change="onChangeFUP2" buttonOnly="true" visible="true" iconDensityAware="false"></u:FileUploader>
+													<OverflowToolbarButton id="addFolderBtn" text="{i18n>Add}" tooltip="{i18n>AddFolder}" type="Transparent" icon="sap-icon://add-folder"
+														iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onAddFolder"/>
+													<OverflowToolbarButton id="addShopBtn" text="{i18n>AddShop}" tooltip="{i18n>AddShop}" type="Transparent" icon="sap-icon://create-form"
+														iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onAddShop"/>
+													<OverflowToolbarButton id="editBtn" text="{i18n>Edit}" tooltip="{i18n>Edit}" type="Transparent" icon="sap-icon://edit" iconFirst="true"
+														width="auto" enabled="true" visible="true" iconDensityAware="false" press="onEditNodeDialog"/>
+													<OverflowToolbarButton id="deleteNodeBtn" type="Transparent" tooltip="{i18n>DeleteNode}" icon="sap-icon://decline" iconFirst="true"
+														width="auto" enabled="true" visible="true" iconDensityAware="false" press="onDeleteNode"/>
+												</items>
+											</FlexBox>
+										</items>
+									</FlexBox>
+								</Toolbar>
+							</table:toolbar>
+							<table:dragDropConfig>
+								<dnd:DragDropInfo sourceAggregation="rows" targetAggregation="rows" dragStart="onDragStart" drop="onDrop"/>
+							</table:dragDropConfig>
+							<table:columns>
+								<table:Column width="50%" label="{i18n>Description}">
+									<table:template>
+										<Text text="{LONG_TEXT}" wrapping="false"/>
+									</table:template>
+								</table:Column>
+							</table:columns>
+						</table:TreeTable>
+					</items>
+				</FlexBox>
+			</l:VerticalLayout>
+			<!--      <Tree-->
+			<!--	id="UserHierarchyTree"-->
+			<!-- 	items="{path: '/'}"-->
+			<!-- 	mode="MultiSelect"-->
+			<!--	includeItemInSelection="true">-->
+			<!--	<headerToolbar>-->
+			<!--              <Toolbar>-->
+			<!--                  <content>-->
+			<!--                      <Title text="Nodes" level="H2" />-->
+			<!--                      <ToolbarSpacer />-->
+			<!--                  </content>-->
+			<!--              </Toolbar>-->
+			<!--          </headerToolbar>-->
+			<!--    <StandardTreeItem-->
+			<!--	    title="{Description}"/>-->
+			<!--</Tree>-->
+		</content>
+		<footer>
+			<OverflowToolbar width="auto" height="auto" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+					<Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

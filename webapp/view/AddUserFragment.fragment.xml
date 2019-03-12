@@ -1,0 +1,102 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" 
+   id="addUserFragment">
+	
+	<Dialog
+		title="Добавить пользователя">
+		<l:VerticalLayout
+			class="sapUiContentPadding"
+			width="100%">
+			<l:content>
+			<!-- Filter by date range -->
+                <l:VerticalLayout width="100%">
+                	<Toolbar>
+						<Label text="Имя" width="35%"/>
+						<TextArea id="AddUserName" placeholder="Иван" width="100%" rows="1" />
+					</Toolbar>
+					
+					<Toolbar>
+						<Label text="Фамилия" width="35%"/>
+						<TextArea id="AddUserSurname" placeholder="Иванов" width="100%" rows="1" />
+					</Toolbar>
+					
+					<Toolbar>	
+						<Label text="Отчество" width="35%"/>
+						<TextArea id="AddUserPatronymic" placeholder="Иванович" width="100%" rows="1" />
+					</Toolbar>
+					
+					<!--<filterItems>-->
+					<!--	<ViewSettingsCustomItem text="Иерархия"-->
+					<!--		filterCount="{parts:[{path:'/Sum/vValueLT'}, {path:'/Sum/vValueGT'}], formatter:'.filterCountFormatter'}">-->
+					<!--		<customControl>-->
+					<!--			<l:VerticalLayout width="100%">-->
+					<!--				<Toolbar>-->
+					<!--					<Label width="25%" text="Узел иерархии" class="sapUiSmallMarginBegin"/>-->
+					<!--					<Tree-->
+					<!--						id="UserHierarchyTree"-->
+					<!--						items="{path: '/'}"-->
+					<!--						mode="MultiSelect"-->
+					<!--						includeItemInSelection="true">-->
+					<!--						<StandardTreeItem-->
+					<!--								title="{Description}"/>-->
+					<!--					</Tree>-->
+					<!--				</Toolbar>-->
+					<!--			</l:VerticalLayout>-->
+					<!--		</customControl>-->
+					<!--	</ViewSettingsCustomItem>	-->
+					<!--</filterItems>-->
+					<!--<Tree-->
+					<!--	id="UserHierarchyTree"-->
+					<!--	items="{path: '/'}"-->
+					<!--	mode="MultiSelect"-->
+					<!--	includeItemInSelection="true">-->
+					<!--	<StandardTreeItem-->
+					<!--			title="{Description}"/>-->
+					<!--</Tree>-->
+					
+					
+					<Toolbar>
+						<Label text="Дата начала" width="35%"/>
+						<DatePicker id="AddUserStartDate" width="100%" valueFormat="dd.MM.yyyy" type="Date" placeholder="{i18n>EnterCloseData}" change="_onAddUserStartDateValueChange"/>
+					</Toolbar>
+					
+					<Toolbar>	
+						<Label text="Дата конца" width="35%"/>
+						<DatePicker id="AddUserEndDate" width="100%" valueFormat="dd.MM.yyyy" type="Date" placeholder="{i18n>EnterCloseData}"/>
+					</Toolbar>
+						<!--<MultiInput -->
+						<!--	id="filterPlanNames" -->
+						<!--	suggestionItems="{-->
+						<!--	             path: 'plan>/PlansSet',-->
+						<!--	             sorter: { path: 'plan>Name' }-->
+						<!--	         }"-->
+						<!--	showValueHelp="false"-->
+						<!--	placeholder="{i18n>filter.dialog.planNames.placeHolder}"-->
+						<!--	enableMultiLineMode="true" >-->
+						<!--	<core:Item key="{plan>TestPlanIds}" text="{plan>Name}" />-->
+						<!--</MultiInput>  -->
+						<Toolbar>
+							<Label width="35%" text="Иерархия"/>
+							<Input id="InputForHierarchy" showValueHelp="true" valueHelpRequest="handleValueHelp"/>
+							<Input visible="false" id="InputForHierarchyId"/>
+						</Toolbar>
+                </l:VerticalLayout>
+			</l:content>
+		</l:VerticalLayout>
+	
+		<beginButton>
+			<Button
+				text="Добавить"
+				press="onCloseUserAddingDialogConfirm"/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="Отмена"
+				press="onCloseUserAddingDialogCancel"/>
+		</endButton>
+	
+	</Dialog>
+
+</core:FragmentDefinition>

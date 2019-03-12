@@ -1,0 +1,57 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" 
+   id="EditUserFragment">
+	<Dialog
+		title="Изменение пользователя">
+		<l:VerticalLayout
+			class="sapUiContentPadding"
+			width="100%">
+			<l:content>
+			<!-- Filter by date range -->
+                <l:VerticalLayout width="100%">
+                	<TextArea id="EditUserID" visible="false"/>
+                	<TextArea id="EditUserSTATUS" visible="false"/>
+                	<Toolbar>
+						<Label text="Имя" width="35%"/>
+						<TextArea id="EditUserName" placeholder="Иван" width="100%" rows="1" />
+					</Toolbar>
+					<Toolbar>
+						<Label text="Фамилия" width="35%"/>
+						<TextArea id="EditUserSurname" placeholder="Иванов" width="100%" rows="1" />
+					</Toolbar>
+					<Toolbar>	
+						<Label text="Отчество" width="35%"/>
+						<TextArea id="AdEditUserPatronymic" placeholder="Иванович" width="100%" rows="1" />
+					</Toolbar>
+					<Toolbar>
+						<Label text="Дата начала" width="35%"/>
+						<DatePicker id="EditUserStartDate" width="100%" valueFormat="dd.MM.yyyy" type="Date" placeholder="{i18n>EnterCloseData}" change="_onEditUserStartDateValueChange"/>
+					</Toolbar>
+					<Toolbar>	
+						<Label text="Дата конца" width="35%"/>
+						<DatePicker id="EditUserEndDate" width="100%" valueFormat="dd.MM.yyyy" type="Date" placeholder="{i18n>EnterCloseData}"/>
+					</Toolbar>
+					<Toolbar>
+						<Label width="35%" text="Иерархия"/>
+						<Input id="InputForHierarchy" showValueHelp="true" valueHelpRequest="handleValueHelp"/>
+						<Input visible="false" id="InputForHierarchyId"/>
+					</Toolbar>
+                </l:VerticalLayout>
+			</l:content>
+		</l:VerticalLayout>
+		
+		<buttons>
+			<Button
+				text="Удалить"
+				press="_onEditDelete"/>
+			<Button
+				text="Сохранить"
+				press="onCloseUserEditDialogConfirm"/>
+			<Button
+				text="Отмена"
+				press="onCloseUserEditDialogCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

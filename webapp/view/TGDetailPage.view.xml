@@ -1,0 +1,153 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.scopeCopy.controller.TGDetailPage" xmlns="sap.m"
+	xmlns:chart="sap.suite.ui.commons" xmlns:data="sap.chart.data" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:layout="sap.ui.layout"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data" xmlns:l="sap.ui.layout"
+	xmlns:m="sap.m" xmlns:table="sap.ui.table">
+	<Page showHeader="true" title="{i18n>ProductGroupDetalization}" showFooter="false" showNavButton="true" enableScrolling="true"
+		navButtonPress="_onPageNavButtonPress">
+		<content>
+			<l:VerticalLayout width="100%" >
+				<l:Grid defaultSpan="XL6 L6 M12 S12" containerQuery="true">
+						<FlexBox
+							height="100%"
+							width="100%"
+							alignItems="Start"
+							justifyContent="Start">
+							<items>
+								<l:HorizontalLayout>
+									<l:HorizontalLayout class="Avatar">
+										<f:Avatar src="" initials="" displayShape="Circle" displaySize="M" imageFitType="Cover" />
+									</l:HorizontalLayout>
+									<l:HorizontalLayout class="UserName">
+		                        		<FormattedText top="50" htmlText="&lt;span style='font-size: 16px;'>{userData>/displayName}&lt;/span>" visible="true"/>
+		                        	</l:HorizontalLayout>
+								</l:HorizontalLayout>
+							</items>
+						</FlexBox>
+						<FlexBox height="100%"
+						width="100%"
+						alignItems="Start"
+						justifyContent="End">
+							<items>
+								<l:HorizontalLayout class="sapUiResponsiveContentPadding">
+									<Select id="selectId" width="auto" maxWidth="100%" selectedKey="day" icon="" enabled="true" type="Default" textAlign="Initial" valueState="None" forceSelection="false" change="PeriodTypeChanged">
+										<items>
+											<core:Item key="day" text="{i18n>Day}" enabled="true"/>
+											<core:Item key="Week" text="{i18n>Week}" enabled="true"/>
+											<core:Item key="Month" text="{i18n>Month}" enabled="true"/>
+											<core:Item key="Quarter" text="{i18n>Quarter}" enabled="true"/>
+											<core:Item key="Year" text="{i18n>Year}" enabled="true"/>
+										</items>
+									</Select>
+									<Button icon="sap-icon://slim-arrow-left" press="onLeftPress"/>
+		                            <DatePicker id="DP1" width="125px" displayFormat="short" change="handleChange"/>
+		                            <DatePicker id="DP2" width="125px" displayFormat="short" change="handleChange2"/>
+		                            <Button icon="sap-icon://slim-arrow-right" press="onRightPress"/>
+								</l:HorizontalLayout>
+							</items>
+					</FlexBox>
+				</l:Grid>
+			</l:VerticalLayout>
+			
+			<layout:HorizontalLayout width="100%">
+				<layout:Grid defaultSpan="XL6 L6 M12 S12" containerQuery="true">
+				<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="Start">
+					<items>
+						<Breadcrumbs id="idBreadCrumb" currentLocationText="{i18n>CurrentLocation}">
+							<links>
+								<Link id="idShop" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false"
+									subtle="false" press="_onLinkPress"/>
+								<Link id="idKPI" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false"
+									subtle="false" press="_onLinkPress1"/>
+								<Link id="idPrGr1" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="false" emphasized="false"
+									subtle="false" press="_onLinkPressPrGr1"/>
+								<Link id="idPrGr2" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="false" emphasized="false"
+									subtle="false" press="_onLinkPressPrGr2"/>
+								<Link id="idPrGr3" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="false" emphasized="false"
+									subtle="false" press="_onLinkPressPrGr3"/>
+								<Link id="idPrGr4" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="false" emphasized="false"
+									subtle="false" press="_onLinkPressPrGr4"/>
+							</links>
+						</Breadcrumbs>
+					</items>
+				</FlexBox>
+				</layout:Grid>
+			</layout:HorizontalLayout>
+			
+		<layout:HorizontalLayout width="100%">
+			<layout:Grid defaultSpan="XL6 L6 M12 S12" containerQuery="true">
+				
+				<FlexBox height="100%" width="100%" id="idPieChart" justifyContent="Center">
+					<items>
+						<viz:Popover id="idPopOver"></viz:Popover>
+						<viz:VizFrame id="idpiechart" uiConfig="{applicationSet:'fiori'}" vizType='pie' class="pieChartTG1">
+						</viz:VizFrame>
+					</items>
+				</FlexBox>	
+				<FlexBox height="100%" width="100%" id="idBarChart">
+					<items>
+						<viz:Popover id="idPopOverbar"></viz:Popover>
+						<viz:VizFrame id="idbarchart" uiConfig="{applicationSet:'fiori'}" vizType='dual_bar'>
+						</viz:VizFrame>
+					</items>
+				</FlexBox>
+				<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="End">
+					<items>
+						<SearchField placeholder="{i18n>Search}" width="100%" showSearchButton="true" visible="true" liveChange="_onSearchFieldLiveChange" class="topDate"/>
+					</items>
+				</FlexBox>
+			<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="End" >
+				<items>
+				<table:Table id="sap_m_Page_0-content-build_simple_Table-1534593457799" selectionMode="None" noDataText="{i18n>NoData}" mode="None" showSeparators="All" growing="false"
+				visibleRowCount="10"  growingScrollToLoad="false" rowActionCount="1" rowHeight="33" sort="tableSort" firstVisibleRowChanged="tableScroll" enableBusyIndicator="true">
+                <!--<table:toolbar>-->
+                <!--    <m:Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">-->
+                <!--        <m:Title text="{i18n>UsersList}" titleStyle="H1" width="auto" textAlign="Begin" visible="true" wrapping="false"/>-->
+                <!--        <m:ToolbarSpacer width=""/>-->
+                <!--        <m:OverflowToolbarButton text="{i18n>Sort}" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onSort"/>-->
+                <!--        <m:OverflowToolbarButton text="{i18n>Filter}" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onFilter"/>-->
+                <!--        <m:OverflowToolbarButton text="{i18n>Group}" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+                <!--        <m:OverflowToolbarButton text="{i18n>Add}" type="Transparent" icon="sap-icon://positive" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onAdd"/>-->
+                <!--    </m:Toolbar>-->
+                <!--</table:toolbar>-->
+                <!--<headerToolbar>
+                  <OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+                      <content>
+                          <Title text="{i18n>UsersList}" titleStyle="H1" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+                          <ToolbarSpacer width=""/>
+                          <OverflowToolbarButton text="{i18n>Sort}" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onSort"/>
+                          <OverflowToolbarButton text="{i18n>Filter}" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onFilter"/>
+                          <OverflowToolbarButton text="{i18n>Group}" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                          <OverflowToolbarButton text="{i18n>Add}" type="Transparent" icon="sap-icon://positive" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onAdd"/>
+                      </content>
+                  </OverflowToolbar>
+              </headerToolbar>-->
+				<table:columns>
+
+				</table:columns>
+				<table:rowActionTemplate>
+				        	<table:RowAction id="rowAction">
+				            	<table:items>
+				        			<table:RowActionItem id="idRowAction" type="custom" icon="sap-icon://feeder-arrow"  press="_onRowPress"></table:RowActionItem>
+						        </table:items>
+						    </table:RowAction>
+				</table:rowActionTemplate>
+            </table:Table>
+			</items> 
+				</FlexBox>
+				</layout:Grid>
+			</layout:HorizontalLayout>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<Button text="{i18n>SaveBtn}" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+					<Button text="{i18n>CancelBtn}" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

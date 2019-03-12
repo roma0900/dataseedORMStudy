@@ -1,0 +1,59 @@
+<mvc:View xmlns:table="sap.ui.table" xmlns:dnd="sap.ui.core.dnd" xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.scopeCopy.controller.PageSideNav" 
+xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.commons.layout"
+xmlns:xtnt="com.sap.build.standard.scopeCopy.controls" >
+    <tnt:ToolPage id="toolPageId">
+        <tnt:header>
+        	<tnt:ToolHeader>
+				<Button id="sideNavigationToggleButton"
+						icon="sap-icon://menu2"
+						type="Transparent"
+						press="onSideNavButtonPress">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<ToolbarSpacer />
+				<Text text="{i18n>DetailInfo}" wrapping="false" class="AppTitle" id="pageTitle">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Disappear" />
+					</layoutData>
+				</Text>
+				<ToolbarSpacer />
+				<Text text="Version 0.1" wrapping="false" class="Version">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="Disappear" />
+					</layoutData>
+				</Text>
+				<Button icon="sap-icon://log" press="handleLogout"/>
+				</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation id="sideNavigation" expanded="false" selectedItem="itemKPI" class="fullHeight" itemSelect="onItemSelect">
+				<tnt:item>
+					<tnt:NavigationList>
+						<xtnt:XNavigationListItem text="{i18n>KPI}" icon="sap-icon://kpi-corporate-performance" key="pageKPI" id="itemKPI"/>
+						<xtnt:XNavigationListItem text="{i18n>Assignment}" icon="sap-icon://activity-assigned-to-goal" key="pageAssignment"/>
+						<xtnt:XNavigationListItem text="{i18n>Prognosis}" icon="sap-icon://business-objects-experience" key="pagePrognosis"/>
+						<xtnt:XNavigationListItem text="{i18n>Staff}" icon="sap-icon://group" key="pageStaff"/>
+						<xtnt:XNavigationListItem text="{i18n>Dictionaries}" icon="sap-icon://list" key="dictionary"/>
+						<xtnt:XNavigationListItem text="{i18n>SettingsPersonal}" icon="sap-icon://user-settings" key="PersonalSettings"/>
+						<xtnt:XNavigationListItem text="{i18n>Settings}" icon="sap-icon://settings" visible="{userRole>/admin}">
+							<xtnt:XNavigationListItem text="{i18n>Cashbox}" icon="sap-icon://money-bills" key="pageCashbox" visible="{${userRole>admin}===true?true:false}"/>
+							<xtnt:XNavigationListItem text="{i18n>Hierarchy}" icon="sap-icon://action-settings" key="page6"/>
+							<xtnt:XNavigationListItem text="{i18n>Historical}" icon="sap-icon://history" key="pageHistorical" visible="{${userRole>admin}===true?true:false}"/>
+						</xtnt:XNavigationListItem>
+						<xtnt:XNavigationListItem text="{i18n>Autorization}" icon="sap-icon://business-card" visible="{userRole>/admin}">
+							<xtnt:XNavigationListItem text="{i18n>Users}" icon="sap-icon://add-employee" key="users"/>
+							<xtnt:XNavigationListItem text="{i18n>Roles}" icon="sap-icon://role" key="roles"/>
+						</xtnt:XNavigationListItem>	
+					</tnt:NavigationList>
+				</tnt:item>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="pageContainer">
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+
+</mvc:View>

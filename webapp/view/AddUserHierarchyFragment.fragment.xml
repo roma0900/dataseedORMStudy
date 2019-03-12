@@ -1,0 +1,66 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" 
+   id="userHierarchyFragment"
+   xmlns:table="sap.ui.table">
+	
+	<Dialog
+		title="Добавить пользователя">
+		<l:VerticalLayout
+			class="sapUiContentPadding"
+			width="100%">
+			<l:content>
+				<l:VerticalLayout width="100%">
+					
+					<table:TreeTable
+						rowSelectionChange="rowSelectionChange"
+						id="UserHierarchyTree"
+						items="{path: '/'}"
+						title="{i18n>ShopsHier}"
+						selectionMode="Single"
+						includeItemInSelection="true">
+						<table:columns>
+							<table:Column label="{i18n>Description}">
+								<table:template>
+									<Text text="{Description}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+							<table:Column label="ID" visible="false">
+								<table:template>
+									<Text text="{ID}" wrapping="false"/>
+								</table:template>
+							</table:Column>
+						</table:columns>
+					</table:TreeTable>
+					
+					<Input visible="false" id="InputForHierarchyId"/>
+					<Input visible="false" id="InputForHierarchyDesc"/>
+					
+					<!--<Tree-->
+					<!--	id="UserHierarchyTree"-->
+					<!--	items="{path: '/'}"-->
+					<!--	mode="SingleSelect"-->
+					<!--	includeItemInSelection="true">-->
+					<!--	<StandardTreeItem-->
+					<!--			title="{Description}"/>-->
+					<!--</Tree>-->
+					
+				</l:VerticalLayout>
+			</l:content>
+		</l:VerticalLayout>
+	
+		<beginButton>
+			<Button
+				text="Добавить"
+				press="onCloseUserHierarchyDialogConfirm"/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="Отмена"
+				press="onCloseUserHierarchyDialogCancel"/>
+		</endButton>
+	
+	</Dialog>
+
+</core:FragmentDefinition>

@@ -1,0 +1,72 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.sap.build.standard.scopeCopy.controller.ParamsPage" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:layout="sap.ui.commons.layout" xmlns:form="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core" xmlns:table="sap.ui.table" xmlns:dnd="sap.ui.core.dnd">
+	<Page showHeader="true" showFooter="false" showNavButton="false" enableScrolling="true" navButtonPress="_onPageNavButtonPress">
+		<content>
+			<l:VerticalLayout class="sapUiContentPadding" id="usersLayout_2" height="100%" width="100%">
+				<table:TreeTable id="treeTableHier" enableColumnReordering="false" rowActionCount="2" visibleRowCount="15" title="{i18n>ShopsHier}"
+					selectionMode="None" enableSelectAll="false" navigationMode="Paginator" cellClick="onCellClick">
+					<table:toolbar>
+						<Toolbar>
+							<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="Start">
+								<items>
+									<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="Start">
+										<items>
+											<SearchField placeholder="{i18n>Search}" showSearchButton="true" visible="true" width="200%" liveChange=""/>
+										</items>
+									</FlexBox>
+									<ToolbarSpacer width=""/>
+									<FlexBox height="100%" width="100%" alignItems="Start" justifyContent="End">
+										<items>
+											<OverflowToolbarButton text="{i18n>Sort}" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true"
+												visible="true" iconDensityAware="false" press="_onSort"/>
+											<OverflowToolbarButton text="{i18n>Filter}" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true"
+												visible="true" iconDensityAware="false" press="_onFilter"/>
+											<u:FileUploader id="idfileUploader" width="100%" sameFilenameAllowed="false" icon="sap-icon://upload" iconFirst="true"
+												buttonText="{i18n>UploadHier}" fileType="csv,xsls" change="onChangeFUP" buttonOnly="true" visible="true" iconDensityAware="false"></u:FileUploader>
+											<u:FileUploader id="idfileUploader2" width="100%" sameFilenameAllowed="false" icon="sap-icon://upload" iconFirst="true"
+												buttonText="{i18n>UploadText}" fileType="csv" change="onChangeFUP2" buttonOnly="true" visible="true" iconDensityAware="false"></u:FileUploader>
+											<!--	<OverflowToolbarButton id="saveHierBtn" type="Transparent" icon="sap-icon://save" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="OnSaveBtnPress"/>	-->
+											<OverflowToolbarButton id="addFolderBtn" text="{i18n>Add}" tooltip="{i18n>AddFolder}" type="Transparent" icon="sap-icon://add-folder"
+												iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onAddFolder"/>
+											<OverflowToolbarButton id="addShopBtn" text="{i18n>AddShop}" tooltip="{i18n>AddShop}" type="Transparent" icon="sap-icon://create-form"
+												iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="onAddShop"/>
+											<OverflowToolbarButton id="editBtn" text="{i18n>Edit}" tooltip="{i18n>Edit}" type="Transparent" icon="sap-icon://edit" iconFirst="true"
+												width="auto" enabled="true" visible="true" iconDensityAware="false" press="onEditNodeDialog"/>
+											<OverflowToolbarButton id="deleteNodeBtn" type="Transparent" tooltip="{i18n>DeleteNode}" icon="sap-icon://decline" iconFirst="true"
+												width="auto" enabled="true" visible="true" iconDensityAware="false" press="onDeleteNode"/>
+										</items>
+									</FlexBox>
+								</items>
+							</FlexBox>
+						</Toolbar>
+					</table:toolbar>
+					<table:dragDropConfig>
+						<dnd:DragDropInfo sourceAggregation="rows" targetAggregation="rows" dragStart="onDragStart" drop="onDrop"/>
+					</table:dragDropConfig>
+					<table:columns>
+						<table:Column width="50%" label="{i18n>Description}">
+							<table:template>
+								<Text text="{LONG_TEXT}" wrapping="false"/>
+							</table:template>
+						</table:Column>
+					</table:columns>
+				</table:TreeTable>
+				<!--<Button text="{i18n>SaveBtn}" press="OnSaveBtnPress"></Button>-->
+				<!--</l:Grid>-->
+			</l:VerticalLayout>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+					<Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>
