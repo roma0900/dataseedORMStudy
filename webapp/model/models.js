@@ -31,6 +31,11 @@ sap.ui.define([
 				var oModel = new JSONModel("/api/projects/roles");
 				oModel.setDefaultBindingMode("OneWay");
 				return oModel;
+			}, 
+			createMyModel: function() {
+				var oModel = new JSONModel();
+				oModel.setDefaultBindingMode("OneWay");
+				return oModel;
 			}
 		};
 

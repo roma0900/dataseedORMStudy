@@ -29,8 +29,7 @@ sap.ui.define([
 			this.setModel(models.createDeviceModel(), "device");
 			// set the FLP model
 			this.setModel(models.createFLPModel(), "FLP");
-
-
+			this.setModel(models.createMyModel(), "MyModel");
 			this.setModel(models.createUserModel(), "userData");
 			
 			this.setModel(models.createUserRoleModel(),"userRole");

@@ -9,7 +9,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"use strict";
 	var k=true;
 	var arr = [];
-	var green_lvl=90, yellow_lvl=70;
+	//Проценты по умолчанию
+	var green_lvl=100, yellow_lvl=80;
 	return BaseController.extend("com.sap.build.standard.scopeCopy.controller.PlantsPage", {
 
 
@@ -36,6 +37,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		// 	oSideNavigation.setExpanded(!bExpanded);
 
 		// },
+		
 		tableBindItems: function(Date1,Date2) {
 			//var oModel1 = this.getOwnerComponent().getModel("plants");
 			var oJSModel1 = new sap.ui.model.json.JSONModel();
@@ -425,7 +427,25 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			console.log(dd);
 			this.tableBindItems(dd,dd2);
 			this.sorting();
+			 var router = this.getOwnerComponent().getRouter();
+			 var target = router.getTarget("PlantsPage");
+			 target.attachDisplay(this.onDisplay, this);
+		//	this.getOwnerComponent().getRouter().getRoute("PlantsPage").attachPatternMatched(this._onObjectMatched, this);
+		
 		},
+		onDisplay: function(oEvent) {
+			console.log("refreshData");
+			 this._refreshData();
+		},    
+		
+		/*_onObjectMatched: function (oEvent) {
+			var oView = this.getView(); 
+			var oModel = oView.getModel();
+			var oArgs=oEvent.getParameter("arguments");
+			oModel.metadataLoaded().then(function() {
+				oView.updateBind
+			});
+		}, */
 		PeriodTypeChanged: function(e) {
 
 			switch(e.getSource().mProperties.selectedKey){
@@ -763,15 +783,75 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var dd2 = dateFormat.format(Date2);
 			this.tableBindItems(dd,dd2);
 		},
-        rtoState : 	function (kpi) {
-			if(kpi>green_lvl) {
-				return "#00CF00";//green
-			} else if(kpi >yellow_lvl) {
-				return "#FFAF25";//yellow
-			} else {
-				return "#FF2525";//red
+		//Функция цвета для столбца KPIRTO
+        rtoStateKPIRTO : 	function (kpi) {
+			var green_clr=jQuery.sap.storage(jQuery.sap.storage.Type.local).get("KPIRTO-green");
+			var yellow_clr=jQuery.sap.storage(jQuery.sap.storage.Type.local).get("KPIRTO-yellow");
+			if (green_clr!=null || yellow_clr!=null) {
+				if(kpi>green_clr) {
+					return "#00CF00";//green
+				} else if(kpi >yellow_clr) {
+					return "#FFAF25";//yellow
+				} else {
+					return "#FF2525";//red
+				}
+			}
+			else {
+					if(kpi>green_lvl) {
+						return "#00CF00";//green
+					} else if(kpi >yellow_lvl) {
+						return "#FFAF25";//yellow
+					} else {
+						return "#FF2525";//red
+					}
+			}
+		},
+		//Функция цвета для столбца KPIRemains
+		 rtoStateKPIRemains: 	function (kpi) {
+			var green_clr=jQuery.sap.storage(jQuery.sap.storage.Type.local).get("KPIRemains-green");
+			var yellow_clr=jQuery.sap.storage(jQuery.sap.storage.Type.local).get("KPIRemains-yellow");
+			if (green_clr!=null || yellow_clr!=null) {
+				if(kpi>green_clr) {
+					return "#00CF00";//green
+				} else if(kpi >yellow_clr) {
+					return "#FFAF25";//yellow
+				} else {
+					return "#FF2525";//red
+				}
+			}
+			else {
+					if(kpi>green_lvl) {
+						return "#00CF00";//green
+					} else if(kpi >yellow_lvl) {
+						return "#FFAF25";//yellow
+					} else {
+						return "#FF2525";//red
+					}
 			}
 
+		},
+		//Функция цвета для столбца KPIWrite-offs
+		rtoStateKPIWriteOffs: 	function (kpi) {
+			var green_clr=jQuery.sap.storage(jQuery.sap.storage.Type.local).get("KPIWrite-offs-green");
+			var yellow_clr=jQuery.sap.storage(jQuery.sap.storage.Type.local).get("KPIWrite-offs-yellow");
+			if (green_clr!=null || yellow_clr!=null) {
+				if(kpi>green_clr) {
+					return "#00CF00";//green
+				} else if(kpi >yellow_clr) {
+					return "#FFAF25";//yellow
+				} else {
+					return "#FF2525";//red
+				}
+			}
+			else {
+					if(kpi>green_lvl) {
+						return "#00CF00";//green
+					} else if(kpi >yellow_lvl) {
+						return "#FFAF25";//yellow
+					} else {
+						return "#FF2525";//red
+					}
+			}
 		}
 	});
 

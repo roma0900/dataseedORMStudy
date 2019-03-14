@@ -1,4 +1,4 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
 	controllerName="com.sap.build.standard.scopeCopy.controller.PersonalSettingsPage" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
@@ -6,60 +6,49 @@
 				<subHeader>
 					<Toolbar>
 						<ToolbarSpacer/>
-							<SegmentedButton selectedKey="general" selectionChange="onSelectionChange">
-								<items>
-									<SegmentedButtonItem key="general" text="Общие настройки" width="auto" enabled="true"/>
-									<SegmentedButtonItem key="KPI" text="Настройки KPI" width="auto" enabled="true"/>
-								</items>
-							</SegmentedButton>
+						<SegmentedButton selectedKey="general" selectionChange="onSelectionChange">
+							<items>
+								<SegmentedButtonItem key="general" text="Общие настройки" width="auto" enabled="true"/>
+								<SegmentedButtonItem key="KPI" text="Настройки KPI" width="auto" enabled="true"/>
+							</items>
+						</SegmentedButton>
 						<ToolbarSpacer/>
 					</Toolbar>
 				</subHeader>
-				
 				<content>
-				<NavContainer id="PSNavCon">
-					<Page id="general" showHeader="false">
-					</Page>
-					
-					<Page id="KPI" showHeader="false">
-						<VBox class="sapUiSmallMargin">
-							<Select items="{path: 'plants>/USERS'}" width="30%" change="comboBoxChanged">
-								<core:Item key="{plants>ID}" text="{
-									parts: [
-										{path: 'plants>SURNAME'},
-										{path: 'plants>NAME'},
-										{path: 'plants>PATRONYMIC'}
-									],
-									formatter : '.userNameFormatter'
-								}" />
-							</Select>
-							<Label text="Зеленый статус:"/>
-							<Input
-								id="inputGreen"
-								type="Number"
-								class="sapUiSmallMarginBottom"
-								placeholder="Выполнение плана в %" 
-								width="20%"/>
-							<Label text="Желтый статус:"/>
-							<Input
-								id="inputYellow"
-								type="Number"
-								class="sapUiSmallMarginBottom"
-								placeholder="Выполнение плана в %"
-								width="20%"
-								liveChange="inputYellowLiveChange"/>
-							<Label text="Красный статус:"/>
-							<Input
-								id="inputRed"
-								enabled="false"
-								class="sapUiSmallMarginBottom"
-								value="Выполнение плана в %"
-								width="20%"/>
-							<Button text="Сохранить изменения" press="onSaveChanges"/>
-							<Button text="Вернуть стандартные значения" press="onSetDefault"/>
-						</VBox>
-					</Page>
-				</NavContainer>	
+					<NavContainer id="PSNavCon">
+						<Page id="general" showHeader="false"></Page>
+						<Page id="KPI" showHeader="false">
+							<content>
+								<Panel>
+									<FlexBox justifyContent="Center" height="80%" alignItems="Start" width="100%">
+										<VBox>
+											<Select width="100%" id="ComboBox"  change="comboBoxChanged">
+												<core:Item key="1" text="{i18n>KPIWrite-offs}" id="1" />
+												<core:Item key="2" text="{i18n>KPIRTO}" />
+												<core:Item key="3" text="{i18n>KPIRemains}" />
+											</Select>
+											<!-->
+											<Select items="{path: 'plants>/USERS'}" width="30%" change="comboBoxChanged">
+												<core:Item key="{plants>ID}"
+													text="{ parts: [ {path: 'plants>SURNAME'}, {path: 'plants>NAME'}, {path: 'plants>PATRONYMIC'} ], formatter : '.userNameFormatter' }"/>
+											</Select>
+											<!-->
+											<Label text="Зеленый статус" />
+											<Input id="inputGreen" type="Number" class="sapUiSmallMarginBottom" placeholder="Выполнение плана в %" width="100%"/>
+											<Label text="Желтый статус"/>
+											<Input id="inputYellow" type="Number" class="sapUiSmallMarginBottom" placeholder="Выполнение плана в %" width="100%"
+												liveChange="inputYellowLiveChange"/>
+											<Label text="Красный статус"/>
+											<Input id="inputRed" enabled="false" class="sapUiSmallMarginBottom" value="Выполнение плана в %" width="100%"/>
+											<Button text="Сохранить изменения" type="Accept" press="onSaveChanges" width="100%"/>
+											<Button text="Вернуть стандартные значения" type="Reject" press="onSetDefault" width="100%"/>
+										</VBox>
+									</FlexBox>
+								</Panel>
+							</content>
+						</Page>
+					</NavContainer>
 				</content>
 			</Page>
 		</pages>
