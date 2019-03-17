@@ -12,7 +12,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	var green_lvl=90, yellow_lvl=70;
 	return BaseController.extend("com.sap.build.standard.scopeCopy.controller.PlantsPage", {
 
-
 		// handleRouteMatched: function(oEvent) {
 		// 	var oParams = {};
 
@@ -27,15 +26,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		// 			this.getView().bindObject(oPath);
 		// 		}
 		// 	}
-
 		// },
 		// _onSideNavButtonPress: function() {
-
 		// 	var oSideNavigation = this.byId("sideNavigation");
 		// 	var bExpanded = oSideNavigation.getExpanded();
 		// 	oSideNavigation.setExpanded(!bExpanded);
-
 		// },
+		
 		tableBindItems: function(Date1,Date2) {
 			//var oModel1 = this.getOwnerComponent().getModel("plants");
 			var oJSModel1 = new sap.ui.model.json.JSONModel();
@@ -381,27 +378,61 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 
 		},
-
+		comp : function(a,b){
+			return 0;
+        },
 		_onSearchFieldLiveChange: function(oEvent) {
-
-		 // var aFilters = [];
-			var sQuery = oEvent.getSource().getValue();
-			// if (sQuery && sQuery.length > 0) {
-			// 	var filter = new Filter("NODE_TEXT", sap.ui.model.FilterOperator.Contains, sQuery);
-			// 	aFilters.push(filter);
-			// }
-			var aFilters=	new Filter({
-		    filters: [
-		      new Filter("NODE_TEXT", sap.ui.model.FilterOperator.Contains, sQuery),
-		      new Filter("STORE__ADDRESS", sap.ui.model.FilterOperator.Contains, sQuery)
-		    ],
-		    and: false
-		  });
-			// update list binding
-			var list = this.byId("treeTable");
-			var binding = list.getBinding("rows");
-			binding.filter(aFilters, "Application");
+			var sQuery = oEvent.getSource().getValue().trim(); //запрос
+			var oTree = this.byId("treeTable");
+			var oBinding = oTree.getBinding("rows"); //элементы
+			var oRes = []; //здесь сохраним ноды, в NODE_TEXT или в STORE__ADDRESS которых есть запрос
+			var oFilter1 = new Filter({
+				filters: [ 
+					new Filter({			       
+						path:false,
+			        	test: function (oNode) {
+			        		if((oNode.NODE_TEXT.toUpperCase().includes(sQuery.toUpperCase())) || 
+			        		(oNode.STORE__ADDRESS!=null && oNode.STORE__ADDRESS.toUpperCase().includes(sQuery.toUpperCase()))){
+				        		oRes.push(oNode);
+				        	}
+				        	return true; 
+				    	}
+				})]}); 
+			oBinding.filter(oFilter1, "Control");
+			oBinding.aFilters = null;
+			oTree.getModel().refresh(true);
+			
+			var oFilter2 = new Filter({
+				filters: [ 
+					new Filter({
+				        path:false,
+				        test: function (oNode) {
+				        	if(oNode!=undefined){
+			        			// console.log(oNode);
+					        	for(var i in oRes){
+									//если в пути очередной ноды есть номер ноды из res, значит это либо ее потомок, либо сама нода из res
+									//например при запросе "Татарстан" в res будет нода с NODE = 6
+									//и путь к любому магазину из Татарстана будет содержать число 6, например 4/5/6/7/2264/
+									var strs = oNode.PATH.split("/"); 
+									if( strs.includes(oRes[i].NODE)){
+										return true;
+									}
+					        	}
+				        	}
+				        	return false;
+	    				}
+					})]});
+			
+			if(sQuery!==""){
+				oBinding.filter(oFilter2, "Control");
+				oTree.expandToLevel(4);
+			}
+			else{
+				oTree.collapseAll();
+				oTree.expandToLevel(1);
+			}
 		},
+
 
 		onInit: function() {
 
@@ -422,7 +453,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var dateFormat = sap.ui.core.format.DateFormat.getDateInstance({pattern : "YYYYMMdd" });
 			var dd = dateFormat.format(dayDate1);
 			var dd2 = dateFormat.format(dayDate2);
-			console.log(dd);
 			this.tableBindItems(dd,dd2);
 			this.sorting();
 		},
